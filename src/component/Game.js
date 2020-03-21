@@ -85,6 +85,7 @@ class Game extends React.Component {
         }
 
         return (
+            <div>
             <div className="game-container">
                 <div className="game">
                     <div className="game-board">
@@ -98,12 +99,13 @@ class Game extends React.Component {
                         <ol>{moves}</ol>
                     </div>
                 </div>
-                <div className="winner-board">
-                    <div>--------WinnerBoard--------</div>
-                    <WinnerBoard winners={this.state.winners} />
-                    <div>-----------------------------------</div>
-                </div>
             </div>
+                <div className="winner-board">
+                    <WinnerBoard winners={this.state.winners} />
+                </div>
+
+            </div>
+            
         );
     }
 }

@@ -55,11 +55,10 @@ ol, ul {
 }
 
 .game-container {
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
+
   position: fixed;
-  width: 100%;
+  width: 50%;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,4 +69,27 @@ header {
   background-color: black;
   height: 80px;
   margin-bottom: 30px;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #fff;
+  font-size: 20px;
+}
+
+.winner-board {
+  width: 50%;
+  border: 2px solid #999;
+  
+}
+
+.winner-board-list {
+  list-style-type: disc;
+  
 }

@@ -7,10 +7,8 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <div className="game-container">
-          <Game />
-          
-          </div>
+       
+        <Game />
          
       </div>
    
