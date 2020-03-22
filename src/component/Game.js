@@ -8,9 +8,10 @@ class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            boardSize: props.boardSize,
             history: [
                 {
-                    squares: Array(9).fill(null)
+                    squares: Array(props.boardSize).fill(null)
                 }
             ],
             winners: [],
