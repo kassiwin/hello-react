@@ -5,10 +5,11 @@ import calculateWinner from './Utils'
 
 
 class Game extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            boardSize: props.boardSize,
+            boardSize: 3,
             history: [
                 {
                     squares: Array(props.boardSize).fill(null)
@@ -18,13 +19,15 @@ class Game extends React.Component {
             stepNumber: 0,
             xIsNext: true
         };
+        this.handleBoardSizeChange = this.handleBoardSizeChange.bind(this)
     }
 
     handleClick(i) {
         const history = this.state.history.slice(0, this.state.stepNumber + 1);
         const current = history[history.length - 1];
         const squares = current.squares.slice();
-        if (calculateWinner(squares) || squares[i]) {
+        const boardSize = this.state.boardSize;
+        if (calculateWinner(squares, boardSize) || squares[i]) {
             return;
         }
 
@@ -38,6 +41,13 @@ class Game extends React.Component {
             stepNumber: history.length,
             xIsNext: !this.state.xIsNext
         });
+    }
+
+    handleBoardSizeChange(e) {
+        let {value} = e.target;
+
+       this.setState({boardSize: value});
+        console.log(e.target.value);
     }
 
     addWinner(winner) {
@@ -65,7 +75,7 @@ class Game extends React.Component {
     render() {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
-        const winner = calculateWinner(current.squares);
+        const winner = calculateWinner(current.squares, this.state.boardSize);
 
         const moves = history.map((step, move) => {
             const desc = move ?
@@ -87,10 +97,18 @@ class Game extends React.Component {
 
         return (
             <div>
+                <div>
+                    <select  defaultValue="3"
+                             onChange={this.handleBoardSizeChange} >
+                        <option value="4">4 x 4 Board</option>
+                        <option value="3">3 x 3 Board</option>
+                    </select>
+                </div>
             <div className="game-container">
                 <div className="game">
                     <div className="game-board">
                         <Board
+                            boardSize={this.state.boardSize}
                             squares={current.squares}
                             onClick={i => this.handleClick(i)}
                         />

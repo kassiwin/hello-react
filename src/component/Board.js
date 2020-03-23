@@ -14,6 +14,7 @@ class Board extends React.Component {
         this.state = {
             boardSize: props.boardSize,
         }
+        console.log(props.boardSize);
     }
     renderSquare(i) {
         return (
@@ -24,35 +25,56 @@ class Board extends React.Component {
         );
     }
 
+    rowsToBoard(rows, bSize) {
+         let board = [], i, k;
+
+         for (i = 0, k = -1; i < rows.length; i++) {
+            if (i % bSize === 0) {
+                k++;
+                board[k] = [];
+            }
+
+             board[k].push(rows[i]);
+        }
+        return board;
+    }
+
+    renderBoard(n) {
+        let rows = [];
+        for (let i = 0; i < n*n; i++) {
+            rows.push(this.renderSquare(i));
+        }
+        return rows;
+    }
+
+    displayBoard(b) {
+        let dboard = [];
+       for (let i in b) {
+           dboard.push(<div key={Date.now() + Math.random()} className="board-row">{b[i]}</div>);
+       }
+       return dboard;
+
+    }
+
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.boardSize !== prevState.boardSize) {
+            return ({ boardSize: nextProps.boardSize }) // <- this is setState equivalent
+        }
+
+    }
+
+
     render() {
+        console.log(this.state.boardSize);
         return (
             
             <div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                    {this.renderSquare(3)}
-                </div>
-                <div className="board-row">
-                   
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(8)}
-                    {this.renderSquare(9)}
-                    {this.renderSquare(10)}
-                    {this.renderSquare(11)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(12)}
-                    {this.renderSquare(13)}
-                    {this.renderSquare(14)}
-                    {this.renderSquare(15)}
-                </div>
+
+              {this.displayBoard(
+                  this.rowsToBoard(
+                      this.renderBoard(this.state.boardSize), this.state.boardSize)
+              )}
             </div>
         );
     }
