@@ -13,7 +13,7 @@ class Board extends React.Component {
         super(props);
         this.state = {
             boardSize: props.boardSize,
-        }
+        };
         console.log(props.boardSize);
     }
     renderSquare(i) {

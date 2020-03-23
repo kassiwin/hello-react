@@ -12,7 +12,7 @@ class Game extends React.Component {
             boardSize: 3,
             history: [
                 {
-                    squares: Array(props.boardSize).fill(null)
+                    squares: Array(this.boardSize).fill(null)
                 }
             ],
             winners: [],
@@ -26,8 +26,8 @@ class Game extends React.Component {
         const history = this.state.history.slice(0, this.state.stepNumber + 1);
         const current = history[history.length - 1];
         const squares = current.squares.slice();
-        const boardSize = this.state.boardSize;
-        if (calculateWinner(squares, boardSize) || squares[i]) {
+
+        if (calculateWinner(squares, this.state.boardSize) || squares[i]) {
             return;
         }
 
@@ -47,7 +47,7 @@ class Game extends React.Component {
         let {value} = e.target;
 
        this.setState({boardSize: value});
-        console.log(e.target.value);
+        e.preventDefault();
     }
 
     addWinner(winner) {
@@ -98,7 +98,8 @@ class Game extends React.Component {
         return (
             <div>
                 <div>
-                    <select  defaultValue="3"
+                    {console.log(this.state.boardSize)}
+                    <select  defaultValue={this.state.boardSize}
                              onChange={this.handleBoardSizeChange} >
                         <option value="4">4 x 4 Board</option>
                         <option value="3">3 x 3 Board</option>
