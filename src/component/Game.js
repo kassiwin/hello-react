@@ -135,7 +135,16 @@ class Game extends React.Component {
                 </div>
 
                 <div className="flex flex-col items-center lg:flex-row lg:items-start justify-between p-5">
+
+
                     <div className="mx-4 flex flex-col">
+
+                        <button
+                            className={"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-5 mx-auto " + resetGameBtn}
+                            onClick={() => this.jumpTo(0, this.state.xIsNext ? "O" : "X" )}>
+                            Play Again
+                        </button>
+
                         <div className="m-5 border-2 text-center border-blue-200 uppercase text-xl" >{status}</div>
                         <div className="game-board">
                             <Board
@@ -145,24 +154,16 @@ class Game extends React.Component {
                             />
                         </div>
 
-                        <button
-                            className={"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-5 mx-auto " + resetGameBtn}
-                            onClick={() => this.jumpTo(0, this.state.xIsNext ? "O" : "X" )}>
-                            Play Again
-                        </button>
-
-
-
                     </div>
                     <div className="flex flex-row justify-between">
 
                         <ol>{moves}</ol>
                     </div>
 
-                    <div className="border shadow-lg pt-0" style={{"width": "500px"}}>
+                    <div className="border shadow-lg pt-0 w-full max-w-md">
                         <h2 className="text-2xl rounded bg-black text-white text-center font-bold p-2 mb-3">Winner Board</h2>
 
-                        <div className="flex flex-col items-center justify-center">
+                        <div className="flex flex-col items-center justify-center p-8">
                             <WinnerBoard winners={this.state.winners} />
                         </div>
 

@@ -4,7 +4,7 @@ import React from 'react'
 function Header() {
     return (
         <header>
-            <div className="bg-black flex flex-col lg:flex-row text-white justify-between h-12 items-center p-3">
+            <div className="bg-black flex flex-col lg:flex-row text-white justify-between h-auto items-center p-3">
                 <div>Logo</div>
                 <div>Menu</div>
                 <div
