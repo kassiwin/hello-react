@@ -9,16 +9,11 @@ function Square(props) {
 }
 
 class Board extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            boardSize: props.boardSize,
-        };
-        console.log(props.boardSize);
-    }
+
     renderSquare(i) {
         return (
             <Square
+                key={"square-" + i}
                 value={this.props.squares[i]}
                 onClick={() => this.props.onClick(i)}
             />
@@ -50,30 +45,24 @@ class Board extends React.Component {
     displayBoard(b) {
         let dboard = [];
        for (let i in b) {
-           dboard.push(<div key={Date.now() + Math.random()} className="board-row">{b[i]}</div>);
+           dboard.push(<div className="board-row">{b[i]}</div>);
        }
        return dboard;
 
     }
 
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.boardSize !== prevState.boardSize) {
-            return ({ boardSize: nextProps.boardSize }) // <- this is setState equivalent
-        }
-
-    }
 
 
     render() {
-        console.log(this.state.boardSize);
+        console.log(this.props.boardSize);
         return (
             
             <div>
 
               {this.displayBoard(
                   this.rowsToBoard(
-                      this.renderBoard(this.state.boardSize), this.state.boardSize)
+                      this.renderBoard(this.props.boardSize), this.props.boardSize)
               )}
             </div>
         );

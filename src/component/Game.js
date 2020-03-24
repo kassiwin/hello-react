@@ -46,7 +46,7 @@ class Game extends React.Component {
     handleBoardSizeChange(e) {
         let {value} = e.target;
 
-       this.setState({boardSize: value});
+       this.setState({boardSize: parseInt(value, 10)});
         e.preventDefault();
     }
 
