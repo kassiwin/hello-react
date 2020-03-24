@@ -5,12 +5,26 @@ class WinnerBoard extends React.Component {
         this.props.winners.sort((a, b) => (Math.round(a.step / 2) > Math.round(b.step / 2)) ? 1 : -1);
         return (
            
-            <ul className="winner-board-list">
+            <ol className="list-decimal">
                 
                 {this.props.winners.map(winner => (
-                    <li className="winner-item" key={Date.now() + Math.random()}> Player { winner.name} won with { Math.round(winner.step / 2)} moves </li>
+                    <li
+                        className="text-black text-xl"
+                        key={Date.now() + Math.random()}>
+
+                        Player
+                         <span className={"font-bold text-2xl " + (winner.name === "X" ? ' text-green-500' : 'text-yellow-500')}>
+                             {" " + winner.name + " " }
+                        </span>
+                            won with
+                         <span className={"font-bold text-2xl " + (winner.name === "X" ? ' text-green-500' : 'text-yellow-500')}>
+                             {" " + Math.round(winner.step / 2) + " "}
+                        </span>
+
+                        moves
+                    </li>
                 ))}
-            </ul>
+            </ol>
         );
     }
 }

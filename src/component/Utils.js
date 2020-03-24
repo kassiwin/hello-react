@@ -13,9 +13,7 @@ function calculateWinner(squares, bordSize) {
         ];
         for (let i = 0; i < lines3by3.length; i++) {
             const [a, b, c] = lines3by3[i];
-            console.log(i);
             if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-                console.log("3x3 winner",squares[a]);
                 return squares[a];
             }
         }
@@ -35,14 +33,11 @@ function calculateWinner(squares, bordSize) {
             [2,6,10,14],
             [3, 7, 11, 15]
         ];
-        console.log(lines4by4);
 
         for (let i = 0; i < lines4by4.length; i++) {
-            console.log(i);
+
             const [a, b, c, d] = lines4by4[i];
-            console.log("Index Table",[a, b, c, d]);
-            if ((squares[a] && squares[b]) === (squares[b] && squares[c]) === (squares[c] && squares[d]) === (squares[a] && squares[d])) {
-                console.log("4x4 winner", squares[a]);
+            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c] && squares[a] ===  squares[d]) {
                 return squares[a];
             }
         }

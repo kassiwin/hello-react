@@ -12,6 +12,9 @@
     "tailwindcss": "^1.2.0"
   },
   "scripts": {
+    "build:styles": "postcss src/assets/styles/tailwind.css -o src/assets/styles/styles.css",
+    "prebuild": "yarn build:styles",
+    "prestart": "yarn build:styles",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -31,5 +34,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.7.5",
+    "postcss-cli": "^7.1.0"
   }
 }

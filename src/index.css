@@ -17,13 +17,19 @@ ol, ul {
   display: table;
 }
 
+.board-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
 .status {
   margin-bottom: 10px;
 }
 
 .square {
   background: #fff;
-  border: 1px solid #999;
+  border: 2px solid #999;
   float: left;
   font-size: 24px;
   font-weight: bold;
@@ -44,57 +50,40 @@ ol, ul {
   background: #ddd;
 }
 
-.game {
-  display: flex;
-  flex-direction: row;
- 
-}
+/*.game {*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/* */
+/*}*/
 
-.game-info {
-  margin-left: 20px;
-}
+/*.game-board  {*/
+/*  display: compact;*/
+/*  position: fixed;*/
+/*}*/
 
-.game-container {
 
-  position: fixed;
-  width: 50%;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
- 
-}
+/*header {*/
+/*  background-color: black;*/
+/*  height: 60px;*/
+/*  margin-bottom: 30px;*/
+/*}*/
 
-header {
-  background-color: black;
-  height: 80px;
-  margin-bottom: 30px;
-}
+/*.header-container {*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  align-items: center;*/
+/*  justify-content: space-between;*/
+/*  height: 100%;*/
+/*  padding-left: 20px;*/
+/*  padding-right: 20px;*/
+/*  color: #fff;*/
+/*  font-size: 20px;*/
+/*}*/
 
-.header-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-  color: #fff;
-  font-size: 20px;
-}
+/*.winner-board {*/
+/*  margin-left: 15px;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*}*/
 
-.winner-board {
-  width: 20%;
-  height: 80%;
-  margin-left: 15px;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #999;  
-}
-
-.winner-board-list {
-  list-style-type: disc;
-  
-}

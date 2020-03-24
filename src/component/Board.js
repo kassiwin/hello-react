@@ -2,7 +2,7 @@ import React from 'react'
 
 function Square(props) {
     return (
-        <button className="square" onClick={props.onClick}>
+        <button className={"square  " + (props.value === "X" ? 'text-green-500' : 'text-yellow-500')} onClick={props.onClick}>
             {props.value}
         </button>
     );
@@ -45,7 +45,7 @@ class Board extends React.Component {
     displayBoard(b) {
         let dboard = [];
        for (let i in b) {
-           dboard.push(<div className="board-row">{b[i]}</div>);
+           dboard.push(<div key={"rows-" + i} className="board-row">{b[i]}</div>);
        }
        return dboard;
 
@@ -55,9 +55,7 @@ class Board extends React.Component {
 
 
     render() {
-        console.log(this.props.boardSize);
         return (
-            
             <div>
 
               {this.displayBoard(
