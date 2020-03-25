@@ -171,7 +171,6 @@ class Game extends React.Component {
                     </div>
 
                 </div>
-
         );
     }
 }

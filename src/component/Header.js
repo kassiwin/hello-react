@@ -1,7 +1,11 @@
 import React from 'react';
-import Link from "react-router-dom/modules/Link";
+import {
+    BrowserRouter as Router,
+    Link
+} from "react-router-dom";
 function Header() {
     return (
+        <Router>
             <header>
                 <div className="bg-black flex flex-col lg:flex-row text-white justify-between h-auto items-center p-3">
                     <Link to="/"> Game </Link>
@@ -13,8 +17,10 @@ function Header() {
                     </div>
                 </div>
             </header>
-
-    );   
+        </Router>
+    );
 }
 
 export default Header;
+
+

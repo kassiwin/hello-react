@@ -4,35 +4,18 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
 } from "react-router-dom";
 import NewsFeed from "./component/NewsFeed";
+import Header from "./component/Header";
 
 
 class App extends React.Component {
 
   render() {
     return (
-
         <Router>
             <div>
-                <header>
-                    <div className="bg-black flex flex-col lg:flex-row text-white justify-between h-auto items-center p-3">
-
-                        <div>
-                            <Link to="/">Home</Link>
-                        </div>
-
-                        <div>
-                            <Link to="/news">News</Link>
-                        </div>
-                        <div
-                            onClick={() => {window.location.reload();}}
-                            className="bg-red-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Reset the Game
-                        </div>
-                    </div>
-                </header>
+               <Header/>
             </div>
 
             <Switch>
@@ -46,8 +29,6 @@ class App extends React.Component {
                 </Route>
             </Switch>
         </Router>
-
-   
   );
   }
 
