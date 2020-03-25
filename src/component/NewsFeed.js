@@ -87,9 +87,30 @@ export default class NewsFeed extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.tiles}
+            <div className="pt-0 w-full">
+                <div>
+                    <h2 className="text-2xl rounded bg-green-600 text-white text-center font-bold p-2 mb-3">
+                        News Feeds </h2>
+                    <h5 className="text-sm text-center">
+                        News Fetched from
+                        <a href="https://newsapi.org/"
+                           rel="noopener noreferrer"
+                           target="_blank"
+                           className="font-extrabold underline">
+                            News API</a>
+                    </h5>
+
+                </div>
+
+
+                <div className="flex flex-col items-center justify-center p-8">
+                    <div>
+                            {this.state.tiles}
+                    </div>
+                </div>
+
             </div>
-        )
+
+        );
     }
 }
