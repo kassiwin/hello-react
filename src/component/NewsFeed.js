@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 function NewsItem(props) {
     return (
-        <div className="flex flex-row lg:flex-col items-center justify-between border border-gray-200 rounded-md shadow-lg my-4 w-full p-3">
+        <div className="flex flex-col items-center justify-between border-2 border-gray-200 rounded-md shadow-lg my-4 w-full max-w-md p-3">
                 <div className="w-1/3">
                 <div
                     style=
@@ -39,7 +39,13 @@ function NewsItem(props) {
                     </div>
                 
                 </div>
-                <a href={props.url} target="_blank" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-32 text-center self-end lg:self-center">Read More</a>
+                <a 
+                    href={props.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-32 text-center self-end lg:self-center">
+                        Read More
+                </a>
                 
             </div>
 
@@ -60,7 +66,7 @@ export default class NewsFeed extends Component {
         const apiEndpoint = "http://newsapi.org/v2/top-headlines?country=us&apiKey=5983ed84d45c4272ae3917a7c0a4314d";
         const response = await fetch(apiEndpoint);
         const news = await response.json();
-        console.log(news);
+        //console.log(news);
         const tiles = news.articles.map((article) => {
             return (
             <NewsItem
