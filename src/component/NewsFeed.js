@@ -1,4 +1,3 @@
-//5983ed84d45c4272ae3917a7c0a4314d
 import React, { Component } from 'react'
 
 function NewsItem(props) {
@@ -56,7 +55,7 @@ function NewsItem(props) {
 
 export default class NewsFeed extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             tiles: []
         }
@@ -66,20 +65,21 @@ export default class NewsFeed extends Component {
         const apiEndpoint = "http://newsapi.org/v2/top-headlines?country=us&apiKey=5983ed84d45c4272ae3917a7c0a4314d";
         const response = await fetch(apiEndpoint);
         const news = await response.json();
-        //console.log(news);
+
         const tiles = news.articles.map((article) => {
             return (
-            <NewsItem
-            key={article.url}
-            pictureUrl={article.urlToImage}
-            title={article.title}
-            publicationDate={article.publishedAt}
-            description={article.description}
-            author={article.author}
-            source={article.source.name}
-            url={article.url}
+                <NewsItem
+                    key={article.url}
+                    pictureUrl={article.urlToImage}
+                    title={article.title}
+                    publicationDate={article.publishedAt}
+                    description={article.description}
+                    author={article.author}
+                    source={article.source.name}
+                    url={article.url}
 
-            />);
+                />
+            );
         });
 
         this.setState({tiles: tiles})
@@ -87,9 +87,9 @@ export default class NewsFeed extends Component {
 
     render() {
         return (
-            <div className="pt-0 w-full">
+            <div className="pt-0 w-full absolute" style={{top:"100px"}}>
                 <div>
-                    <h2 className="text-2xl rounded bg-green-600 text-white text-center font-bold p-2 mb-3">
+                    <h2 className="text-2xl bg-green-600 text-white text-center font-bold p-2 mb-3">
                         News Feeds </h2>
                     <h5 className="text-sm text-center">
                         News Fetched from
@@ -99,10 +99,7 @@ export default class NewsFeed extends Component {
                            className="font-extrabold underline">
                             News API</a>
                     </h5>
-
                 </div>
-
-
                 <div className="flex flex-col items-center justify-center p-8">
                     <div>
                             {this.state.tiles}
