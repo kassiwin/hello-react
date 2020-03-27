@@ -17,9 +17,6 @@ function Header() {
                         </div>
                     </div>
 
-
-                    <Link to="/news" ><span className="hover:font-extrabold">News</span>  </Link>
-
                     <div className="flex flex-col my-3 lg:my-0 lg:flex-row text-white">
                         <div
                             className="bg-green-800 hover:bg-green-700 my-3 hover:font-extrabold lg:my-1  py-2 px-4 rounded mx-2 cursor-pointer">

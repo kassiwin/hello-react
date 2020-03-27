@@ -30,27 +30,6 @@ class App extends React.Component {
     }
 
 
-    PrivateRoute({ children, ...rest }) {
-        return (
-            <Route
-                {...rest}
-                render={({ location }) =>
-                    this.state.isAuthenticated ? (
-                        children
-                    ) : (
-                        <Redirect
-                            to={{
-                                pathname: "/login",
-                                state: { from: location }
-                            }}
-                        />
-                    )
-                }
-            />
-        );
-    }
-
-
     render() {
         return (
             <Router>
@@ -66,9 +45,9 @@ class App extends React.Component {
                         <SignUp />
                     </Route>
 
-                    <this.PrivateRoute path="/news">
+                    <Route path="/news">
                         <NewsFeed />
-                    </this.PrivateRoute>
+                    </Route>
 
                     <Route path="/">
                         <Game/>
