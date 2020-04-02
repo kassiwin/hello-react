@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Board from './Board'
 import WinnerBoard from './WinnerBoard'
 import calculateWinner from './Utils'
@@ -6,73 +6,78 @@ import calculateWinner from './Utils'
 
 
 
-class Game extends React.Component {
+function Game() {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            boardSize: 3,
-            history: [
-                {
-                    squares: Array(this.boardSize).fill(null)
-                }
-            ],
-            winners: [],
-            stepNumber: 0,
-            xIsNext: true
-        };
-        this.handleBoardSizeChange = this.handleBoardSizeChange.bind(this)
-    }
+    const [boardSize, setBoardSize] = useState(3);
+    const [history, setHistory] = useState(Array(boardSize).fill(null));
+    const [winner, setWinner] = useState([]);
+    const [stepNumber, setStepNumber] = useState(0);
+    const [xIsNext, setXisNext] = useState(true);
 
-    handleClick(i) {
-        const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const memoizedHandleBoardSizeChange = useCallback(
+        (e) => {
+            let {value} = e.target;
+
+            setBoardSize({boardSize: parseInt(value, 10)});
+             e.preventDefault();
+          
+        },
+        [], // Tells React to memoize regardless of arguments.
+      );
+
+
+   function handleClick(i) {
+        const history = history.slice(0, stepNumber + 1);
         const current = history[history.length - 1];
         const squares = current.squares.slice();
 
-        if (calculateWinner(squares, this.state.boardSize) || squares[i]) {
+        if (calculateWinner(squares, boardSize) || squares[i]) {
             return;
         }
 
-        squares[i] = this.state.xIsNext ? "X" : "O";
-        this.setState({
+        squares[i] = xIsNext ? "X" : "O";
+        setHistory({
             history: history.concat([
                 {
                     squares: squares
                 }
-            ]),
-            stepNumber: history.length,
-            xIsNext: !this.state.xIsNext
+            ])
+         
+          
         });
+        setStepNumber({
+            stepNumber: history.length,
+        })
+        setXisNext({
+            xIsNext: !xIsNext
+        })
     }
 
-    handleBoardSizeChange(e) {
-        let {value} = e.target;
-
-       this.setState({boardSize: parseInt(value, 10)});
-        e.preventDefault();
-    }
-
-    addWinner(winner) {
-        this.setState({
-            winners: this.state.winners.concat({
+   
+    function addWinner(winner) {
+       setWinner({
+            winners: winners.concat({
                 name: winner,
-                step: this.state.stepNumber
+                step: stepNumber
             })
         });
     }
 
 
 
-    jumpTo(step, winner) {
-        this.setState({
-            stepNumber: step,
+   function jumpTo(step, winner) {
+        setStepNumber({
+            stepNumber: step
+           
+        });
+        setXisNext({
             xIsNext: (step % 2) === 0
         });
 
         if (step === 0 && winner) {
-            this.addWinner(winner);
+            addWinner(winner);
 
-            this.setState({
+            setHistory({
                 history: [
                     {
                         squares: Array(this.boardSize).fill(null)
@@ -82,8 +87,8 @@ class Game extends React.Component {
         }
     }
 
-    render() {
-        const history = this.state.history;
+    
+        const history = history;
         const current = history[this.state.stepNumber];
         const winner = calculateWinner(current.squares, this.state.boardSize);
 
@@ -95,7 +100,7 @@ class Game extends React.Component {
                 <li key={move} className="flex flex-col items-center">
                     <button
                         className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded my-2 w-40"
-                        onClick={() => this.jumpTo(move, winner)}>
+                        onClick={() => jumpTo(move, winner)}>
                         {desc}
                     </button>
                 </li>
@@ -109,7 +114,7 @@ class Game extends React.Component {
             resetGameBtn = "visible";
 
         } else {
-            status = <span>Next player: <span className={(this.state.xIsNext ? 'text-green-500': 'text-yellow-500' )}>{this.state.xIsNext ? "X" : "O"}</span> </span>;
+            status = <span>Next player: <span className={(xIsNext ? 'text-green-500': 'text-yellow-500' )}>{xIsNext ? "X" : "O"}</span> </span>;
 
             resetGameBtn = "hidden";
         }
@@ -121,8 +126,8 @@ class Game extends React.Component {
                         <div className="inline-block relative w-64">
                             <select
                                 className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                                defaultValue={this.state.boardSize}
-                                onChange={this.handleBoardSizeChange} >
+                                defaultValue={boardSize}
+                                onChange={handleBoardSizeChange} >
                                 <option value="4">4 x 4 Board</option>
                                 <option value="3">3 x 3 Board</option>
                             </select>
@@ -141,16 +146,16 @@ class Game extends React.Component {
 
                             <button
                                 className={"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-5 mx-auto " + resetGameBtn}
-                                onClick={() => this.jumpTo(0, this.state.xIsNext ? "O" : "X" )}>
+                                onClick={() => jumpTo(0, xIsNext ? "O" : "X" )}>
                                 Play Again
                             </button>
 
                             <div className="m-5 border-2 text-center border-blue-200 uppercase text-xl" >{status}</div>
                             <div className="game-board">
                                 <Board
-                                    boardSize={this.state.boardSize}
+                                    boardSize={boardSize}
                                     squares={current.squares}
-                                    onClick={i => this.handleClick(i)}
+                                    onClick={i => handleClick(i)}
                                 />
                             </div>
 
@@ -164,7 +169,7 @@ class Game extends React.Component {
                             <h2 className="text-2xl rounded bg-black text-white text-center font-bold p-2 mb-3">Winner Board</h2>
 
                             <div className="flex flex-col items-center justify-center p-8">
-                                <WinnerBoard winners={this.state.winners} />
+                                <WinnerBoard winners={winners} />
                             </div>
 
                         </div>
@@ -172,6 +177,6 @@ class Game extends React.Component {
 
                 </div>
         );
-    }
+    
 }
 export default Game

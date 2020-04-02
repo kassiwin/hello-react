@@ -8,9 +8,9 @@ function Square(props) {
     );
 }
 
-class Board extends React.Component {
+export default function Board() {
 
-    renderSquare(i) {
+    function renderSquare(i) {
         return (
             <Square
                 key={"square-" + i}
@@ -20,7 +20,7 @@ class Board extends React.Component {
         );
     }
 
-    rowsToBoard(rows, bSize) {
+    function rowsToBoard(rows, bSize) {
          let board = [], i, k;
 
          for (i = 0, k = -1; i < rows.length; i++) {
@@ -34,7 +34,7 @@ class Board extends React.Component {
         return board;
     }
 
-    renderBoard(n) {
+   function renderBoard(n) {
         let rows = [];
         for (let i = 0; i < n*n; i++) {
             rows.push(this.renderSquare(i));
@@ -42,19 +42,13 @@ class Board extends React.Component {
         return rows;
     }
 
-    displayBoard(b) {
+   function displayBoard(b) {
         let dboard = [];
        for (let i in b) {
            dboard.push(<div key={"rows-" + i} className="board-row">{b[i]}</div>);
        }
        return dboard;
-
     }
-
-
-
-
-    render() {
         return (
             <div>
 
@@ -64,6 +58,4 @@ class Board extends React.Component {
               )}
             </div>
         );
-    }
 }
-export default Board
