@@ -1,13 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-class WinnerBoard extends React.Component {
-    render() {
-        this.props.winners.sort((a, b) => (Math.round(a.step / 2) > Math.round(b.step / 2)) ? 1 : -1);
+export default function WinnerBoard(props) {
+
+        // if(props.winners !== null) {
+        //     props.winners.sort((a, b) => (Math.round(a.step / 2) > Math.round(b.step / 2)) ? 1 : -1);
+        // }
+    console.log(typeof props.winners);
         return (
-           
             <ol className="list-decimal">
                 
-                {this.props.winners.map(winner => (
+                {props.winners !== null ?
+                    props.winners.map(winner => (
                     <li
                         className="text-black text-xl"
                         key={Date.now() + Math.random()}>
@@ -23,10 +26,9 @@ class WinnerBoard extends React.Component {
 
                         moves
                     </li>
-                ))}
+                )) :
+                <div>No Winner Yet</div>}
             </ol>
         );
-    }
-}
 
-export default WinnerBoard
+}

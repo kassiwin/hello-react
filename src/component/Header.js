@@ -4,7 +4,6 @@ import {
 } from "react-router-dom";
 function Header() {
     return (
-
             <header className="fixed w-full z-50 mb-4 overflow-y-scroll overflow-x-hidden h-20 bg-transparent shadow-md md:shadow-none">
 
                 <div className="bg-white flex flex-col md:flex-row text-black justify-between items-center p-3 shadow-md">
