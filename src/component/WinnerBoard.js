@@ -2,14 +2,13 @@ import React from 'react';
 
 export default function WinnerBoard(props) {
 
-        // if(props.winners !== null) {
-        //     props.winners.sort((a, b) => (Math.round(a.step / 2) > Math.round(b.step / 2)) ? 1 : -1);
-        // }
-    console.log(typeof props.winners);
+        if(props.winners.length > 0) {
+            props.winners.sort((a, b) => (Math.round(a.step / 2) > Math.round(b.step / 2)) ? 1 : -1);
+        }
+
         return (
             <ol className="list-decimal">
-                
-                {props.winners !== null ?
+                {props.winners.length > 0 ?
                     props.winners.map(winner => (
                     <li
                         className="text-black text-xl"

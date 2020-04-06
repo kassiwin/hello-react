@@ -5,8 +5,6 @@ import calculateWinner from './Utils'
 
 
 function Game() {
-
-
     const [boardSize, setBoardSize] = useState(3);
     const [history, setHistory] = useState([{squares: Array(3).fill(null)}]);
     const [winners, setWinner] = useState([]);
@@ -19,7 +17,7 @@ function Game() {
             setBoardSize(parseInt(value, 10));
             e.preventDefault();
         },
-        [], // Tells React to memoize regardless of arguments.
+        []
     );
 
 
@@ -58,7 +56,6 @@ function Game() {
         if (step === 0 && winner) {
             addWinner(winner);
             setHistory([{squares: Array(boardSize).fill(null)}]);
-            console.log("Jump To", history);
         }
     }
 
