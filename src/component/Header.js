@@ -2,34 +2,59 @@ import React from 'react';
 import {
     Link
 } from "react-router-dom";
-function Header() {
+
+const Header = () => {
+
+    function navToggle() {
+        let btn = document.getElementById('menuBtn');
+        let nav = document.getElementById('menu');
+
+        btn.classList.toggle('open');
+        nav.classList.toggle('flex');
+        nav.classList.toggle('mob-submenu');
+        nav.classList.toggle('hidden');
+    }
+
+
+
+    window.addEventListener('scroll', function() {
+        let nav = document.getElementById('site-menu');
+        let header = document.getElementById('top');
+        if (window.scrollY >=400) {
+            nav.classList.add('nav-sticky');
+            header.classList.add('pt-scroll');
+        } else {
+            nav.classList.remove('nav-sticky');
+            header.classList.remove('pt-scroll');
+        }
+    });
     return (
-            <header className="fixed w-full z-50 mb-4 overflow-y-scroll overflow-x-hidden h-20 bg-transparent shadow-md md:shadow-none">
-
-                <div className="bg-white flex flex-col md:flex-row text-black justify-between items-center p-3 shadow-md">
-                    <div className="flex flex-col my-3 md:my-0 md:flex-row items-center">
-                        <Link to="/"> <span className="hover:font-extrabold">Game</span> </Link>
-                        <div
-                            onClick={() => {window.location.reload();}}
-                            className="hover:bg-red-800 bg-blue-700 text-white py-1 px-4 rounded ml-2 cursor-pointer my-3 md:my-0">
-                            Reset the Game
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col my-3 md:my-0 md:flex-row text-white">
-                        <div
-                            className="bg-green-800 hover:bg-green-700 my-3 hover:font-extrabold md:my-1 py-2 px-4 rounded mx-2 cursor-pointer">
-                            <Link to="/signin">Sign In</Link>
-                        </div>
-                        <div
-                            className="bg-green-800 hover:bg-green-700 my-3 md:my-1 hover:font-extrabold py-2 px-4 rounded cursor-pointer">
-                            <Link to="/signup">Sign Up</Link>
-                        </div>
-
-                    </div>
-
+        //#EA730D
+        <header id="top" className="w-full flex flex-col fixed sm:relative text-white mx-auto">
+            <nav id="site-menu"
+                 className="flex flex-col sm:flex-row w-full h-20 justify-between items-center px-4 sm:px-6 py-1 shadow sm:shadow-none border-t-4 border-red-900">
+                <div
+                    className="w-full sm:w-auto h-full self-start sm:self-center flex flex-row sm:flex-none flex-no-wrap justify-between items-center">
+                    <a href="#" className="no-underline py-1">
+                        <h1 className="font-bold text-lg tracking-widest">LOGO Restaurant</h1>
+                    </a>
+                    <button id="menuBtn" className="hamburger block sm:hidden focus:outline-none" type="button"
+                            onClick={() => navToggle()}>
+                        <span className="hamburger__top-bun"/>
+                        <span className="hamburger__bottom-bun"/>
+                    </button>
                 </div>
-            </header>
+                <div id="menu"
+                     className="w-full sm:w-auto self-end sm:self-center sm:flex flex-col sm:flex-row items-center h-full py-1 pb-4 sm:py-0 sm:pb-0 hidden">
+                    <a className="font-bold hover:text-red text-lg w-full no-underline sm:w-auto sm:pr-4 py-2 sm:py-1 sm:pt-2"
+                       href="#" target="_blank">Nos Plats</a>
+                    <a className="font-bold text-lg w-full no-underline sm:w-auto sm:px-4 py-2 sm:py-1 sm:pt-2"
+                       href="#">Ecrivez-nous</a>
+                </div>
+            </nav>
+        </header>
+
+
 
     );
 }

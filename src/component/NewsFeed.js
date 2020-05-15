@@ -72,7 +72,6 @@ export default function NewsFeed() {
                     author={article.author}
                     source={article.source.name}
                     url={article.url}
-
                 />
             );
         });

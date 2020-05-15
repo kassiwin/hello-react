@@ -9,6 +9,8 @@ import NewsFeed from "./component/NewsFeed";
 import Header from "./component/Header";
 import SignIn from "./component/Account/SignIn";
 import SignUp from "./component/Account/SignUp";
+import HeroSection from "./component/HeroSection";
+import Footer from "./component/Footer";
 
 
 class App extends React.Component {
@@ -30,29 +32,32 @@ class App extends React.Component {
 
     render() {
         return (
-            <Router>
+            // <Router>
                 <div>
                     <Header/>
+                    <HeroSection/>
+
+                    <Footer />
                 </div>
 
-                <Switch>
-                    <Route exact path="/signin">
-                        <SignIn setAuthenticated={this.setAuthenticated} />
-                    </Route>
-
-                    <Route exact path="/signup">
-                        <SignUp />
-                    </Route>
-
-                    <Route exact path={"/news"}>
-                        {this.state.isAuthenticated ? <NewsFeed />: <SignIn setAuthenticated={this.setAuthenticated} />}
-                    </Route>
-
-                    <Route exact path="/">
-                        <Game/>
-                    </Route>
-                </Switch>
-            </Router>
+            //     {/*<Switch>*/}
+            //         {/*<Route exact path="/signin">*/}
+            //         {/*    <SignIn setAuthenticated={this.setAuthenticated} />*/}
+            //         {/*</Route>*/}
+            //
+            //         {/*<Route exact path="/signup">*/}
+            //         {/*    <SignUp />*/}
+            //         {/*</Route>*/}
+            //
+            //         {/*<Route exact path={"/news"}>*/}
+            //         {/*    {this.state.isAuthenticated ? <NewsFeed />: <SignIn setAuthenticated={this.setAuthenticated} />}*/}
+            //         {/*</Route>*/}
+            //
+            //         {/*<Route exact path="/">*/}
+            //         {/*    <Game/>*/}
+            //         {/*</Route>*/}
+            //     {/*</Switch>*/}
+            // {/*</Router>*/}
         );
     }
 

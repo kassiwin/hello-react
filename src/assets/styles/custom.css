@@ -1,0 +1,101 @@
+/* custom non-Tailwind CSS */
+
+@media (max-width: 576px) {
+    .content {
+        padding-top: 51px;
+    }
+}
+
+@media (min-width: 577px) {
+    .pt-scroll {
+        padding-top: 51px;
+    }
+
+    .nav-sticky {
+        position: fixed !important;
+        min-width: 100%;
+        top: 0;
+        box-shadow: 0 2px 4px 0 rgba(234, 115, 13, .1);
+        transition: all .25s ease-in;
+        z-index: 1;
+    }
+}
+
+#top {
+    background: linear-gradient(45deg, rgb(234, 115, 13) 0%, rgb(240, 186, 106) 100%);
+    max-width: 1620px;
+}
+
+
+.hamburger {
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    transition: all 0.25s;
+}
+
+.hamburger__top-bun,
+.hamburger__bottom-bun {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    transform: rotate(0);
+    transition: all 0.5s;
+}
+
+.hamburger:hover [class*="-bun"] {
+    background: #FFF;
+}
+
+.hamburger__top-bun {
+    transform: translateY(-5px);
+}
+
+.hamburger__bottom-bun {
+    transform: translateY(3px);
+}
+
+.open {
+    transform: rotate(90deg);
+    transform: translateY(-1px);
+}
+
+.mob-submenu {
+    background: linear-gradient(45deg, rgb(234, 115, 13) 0%, rgb(240, 186, 106) 100%);
+    height: auto;
+    padding: 25px;
+}
+
+.open .hamburger__top-bun {
+    transform: rotate(45deg) translateY(0px);
+}
+
+.open .hamburger__bottom-bun {
+    transform: rotate(-45deg) translateY(0px);
+}
+
+#hero-section {
+    background-image: url("/src/assets/images/heroimage.jpg");
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    max-width: 1620px;
+}
+
+#phone-img-container {
+    background-image: url("/src/assets/images/mobile.png");
+    background-size: cover;
+    background-position: center center;
+    height: 375px;
+    width: 250px;
+}
+
+
+
+footer {
+    padding: 20px 0 10px 0;
+    background-color: #f5f6ff;
+    border-top: 1px solid #5e88fc;
+}
